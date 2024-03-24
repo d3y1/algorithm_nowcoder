@@ -1,3 +1,15 @@
 [submodule "src/main/java/com/nowcoder/corp/baidu"]
 	path = src/main/java/com/nowcoder/corp/baidu
 	url = https://github.com/d3y1/algorithm_baidu.git
+[submodule "src/main/java/com/nowcoder/corp/huawei"]
+	path = src/main/java/com/nowcoder/corp/huawei
+	url = https://github.com/d3y1/algorithm_huawei.git
+[submodule "src/main/java/com/nowcoder/corp/bytedance"]
+	path = src/main/java/com/nowcoder/corp/bytedance
+	url = https://github.com/d3y1/algorithm_bytedance.git
+[submodule "src/main/java/com/nowcoder/corp/meituan"]
+	path = src/main/java/com/nowcoder/corp/meituan
+	url = https://github.com/d3y1/algorithm_meituan.git
+[submodule "src/main/java/com/nowcoder/corp/tencent"]
+	path = src/main/java/com/nowcoder/corp/tencent
+	url = https://github.com/d3y1/algorithm_tencent.git
