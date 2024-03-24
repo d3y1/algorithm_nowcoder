@@ -1,0 +1,3 @@
+[submodule "src/main/java/com/nowcoder/corp/baidu"]
+	path = src/main/java/com/nowcoder/corp/baidu
+	url = https://github.com/d3y1/algorithm_baidu.git
