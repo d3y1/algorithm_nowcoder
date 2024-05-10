@@ -22,7 +22,7 @@ public class NC217{
      */
     public String[] addOpt (String num, int target) {
         dfs1(num, target, 0, "", 0, 0);
-        dfs2(num, target, 0, "");
+        // dfs2(num, target, 0, "");
 
         String[] resArray = new String[resultList.size()];
         for(int i=0; i<resultList.size(); i++){
@@ -41,9 +41,8 @@ public class NC217{
      * @param last
      */
     private void dfs1(String num, int target, int index, String opStr, int result, int last){
-        if(index == num.length()-1){
-            opStr += num.charAt(index);
-            if(isTarget(opStr, target)){
+        if(index == num.length()){
+            if(result == target){
                 resultList.add(opStr);
             }
             return;
