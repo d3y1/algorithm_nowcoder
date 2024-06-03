@@ -17,12 +17,13 @@ public class NC375{
     public String removeDuplicateLetters (String str) {
         Stack<Character> stack = new Stack<>();
         boolean[] isVisited = new boolean[26];
-        int[] lastIndex = new int[26];
+        int[] last = new int[26];
         char[] chars = str.toCharArray();
         int len = chars.length;
 
+        // 字符最后位置索引
         for(int i=0; i<len; i++){
-            lastIndex[chars[i]-'a'] = i;
+            last[chars[i]-'a'] = i;
         }
 
         for(int i=0; i<len; i++){
@@ -30,7 +31,7 @@ public class NC375{
                 continue;
             }
             // 单调栈
-            while(!stack.isEmpty() && stack.peek()>chars[i] && lastIndex[stack.peek()-'a']>i){
+            while(!stack.isEmpty() && stack.peek()>chars[i] && last[stack.peek()-'a']>i){
                 isVisited[stack.pop()-'a'] = false;
             }
             stack.push(chars[i]);
