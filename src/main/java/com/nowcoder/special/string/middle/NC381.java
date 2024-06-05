@@ -31,6 +31,15 @@ public class NC381{
         return false;
     }
 
+    /**
+     * dfs: 递归
+     * @param arr
+     * @param start
+     * @param left
+     * @param right
+     * @param end
+     * @return
+     */
     private boolean isAdditive(String arr, int start, int left, int right, int end){
         // 前导0
         String firstStr = arr.substring(start, left);
