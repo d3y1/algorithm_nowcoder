@@ -80,7 +80,7 @@ public class NC91{
                 seq[++max] = arr[i];
                 dp[i] = max;
             }else{
-                int left=0,right=max;
+                int left=1,right=max;
                 // 上升子序列seq中二分查找最大的小于arr[i]的位置pos
                 int pos = 0;
                 while(left <= right){
