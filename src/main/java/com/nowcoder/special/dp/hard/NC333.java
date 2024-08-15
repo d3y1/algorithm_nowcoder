@@ -37,6 +37,7 @@ public class NC333{
     private ArrayList<ArrayList<Integer>> solution1(ArrayList<Integer> scores){
         int n = scores.size();
 
+        // 根者, 本也
         int[][] root = new int[n+1][n+1];
         int[][] dp = new int[n+1][n+1];
 
@@ -165,9 +166,13 @@ public class NC333{
                             score = dp[k][k]+dp[i][k-1]*dp[k+1][j];
                             if(score > dp[i][j]){
                                 dp[i][j] = score;
+                                // 前序遍历: 根 左 右
                                 seq = new ArrayList<>();
+                                // 根
                                 seq.addAll(map.get(k+","+k));
+                                // 左子树
                                 seq.addAll(map.get(i+","+(k-1)));
+                                // 右子树
                                 seq.addAll(map.get((k+1)+","+j));
                                 map.put(key, seq);
                             }
