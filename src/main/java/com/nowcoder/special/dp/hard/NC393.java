@@ -23,7 +23,7 @@ public class NC393{
      *
      * 相似 -> NC326 能量项链
      *
-     * dp[i][j]表示区间[i,j]能得到的最多积分
+     * dp[i][j]表示选择区间[i,j]金币能得到的最多积分
      *
      *            { Math.max(dp[i][j], dp[k+1][j]+coins[i-1]*coins[k]*coins[j+1])             , k=i   && 1<=i<=j<=n
      * dp[i][j] = { Math.max(dp[i][j], dp[i][k-1]+coins[i-1]*coins[k]*coins[j+1])             , k=j   && 1<=i<=j<=n
