@@ -15,7 +15,8 @@ public class NC377{
      * @return int整型
      */
     public int singleElement (ArrayList<Integer> v) {
-        return solution1(v);
+//        return solution1(v);
+        return solution11(v);
 //        return solution2(v);
 //        return solution3(v);
 //        return solution4(v);
@@ -75,6 +76,47 @@ public class NC377{
                 // 前后 都不相同
                 result = v.get(mid);
                 break;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 二分
+     * @param v
+     * @return
+     */
+    private int solution11(ArrayList<Integer> v){
+        int n = v.size();
+
+        int result = -1;
+
+        int left = 0;
+        int right = n-1;
+        int mid;
+        int pre,after;
+        while(left <= right){
+            mid = left+(right-left)/2;
+            if(mid%2 == 1){
+                pre = mid-1;
+                after = mid+1;
+                if(0<=pre && v.get(pre).equals(v.get(mid))){
+                    left = mid+1;
+                }else if(after<n && v.get(mid).equals(v.get(after))){
+                    right = mid-1;
+                }
+            }else{
+                pre = mid-1;
+                after = mid+1;
+                if(0<=pre && v.get(pre).equals(v.get(mid))){
+                    right = mid-2;
+                }else if(after<n && v.get(mid).equals(v.get(after))){
+                    left = mid+2;
+                }else{
+                    result = v.get(mid);
+                    break;
+                }
             }
         }
 
