@@ -26,6 +26,8 @@ public class NC360{
 //        return solution1(nums);
         return solution2(nums);
 //        return solution3(nums);
+//        return solution4(nums);
+//        return solution5(nums);
     }
 
     /**
@@ -301,6 +303,268 @@ public class NC360{
         for(i=0; i<len; i++){
             index[left+i] = helpIdx[i];
             nums[left+i] = helpNum[i];
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 线段树(Segment Tree): 数组实现(堆式存储)
+     * @param nums
+     * @return
+     */
+    private ArrayList<Integer> solution4(ArrayList<Integer> nums){
+        n = nums.size();
+        result = new int[n];
+        segmentTree = new int[n*4];
+
+        // 离散化处理
+        discrete(nums);
+
+        int num;
+        // 从后往前遍历
+        for(int i=n-1; i>=0; i--){
+            num = nums.get(i);
+            // 线段树id
+            int id = getIdByNum(num);
+            // 根据id获取区间和 严格小于(id-1) range: left<=right
+            result[i] += sumRange(0, id-1);
+            // 更新前缀和
+            update(id, 1);
+        }
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int cnt : result){
+            list.add(cnt);
+        }
+
+        return list;
+    }
+
+    // 线段树
+    private int[] segmentTree;
+    // 将nums离散化, 去重+排序, 转化为数组a
+    private int[] d;
+    private int n;
+
+    /**
+     * 更新: 根据id进行更新
+     * @param id
+     * @param val
+     */
+    public void update(int id, int val) {
+        change(id, val, 0, 0, n);
+    }
+
+    /**
+     * 区间和
+     * @param left
+     * @param right
+     * @return
+     */
+    public int sumRange(int left, int right) {
+        return range(left, right, 0, 0, n);
+    }
+
+    /**
+     * 递归: 更新线段树
+     * @param index
+     * @param val
+     * @param node
+     * @param start
+     * @param end
+     */
+    private void change(int index, int val, int node, int start, int end) {
+        if(start == end){
+            segmentTree[node] += val;
+            return;
+        }
+        int mid = start+(end-start)/2;
+        if(index <= mid){
+            change(index, val, node*2+1, start, mid);
+        }else{
+            change(index, val, node*2+2, mid+1, end);
+        }
+        segmentTree[node] = segmentTree[node*2+1]+segmentTree[node*2+2];
+    }
+
+    /**
+     * 递归: 区间和
+     * @param left
+     * @param right
+     * @param node
+     * @param start
+     * @param end
+     * @return
+     */
+    private int range(int left, int right, int node, int start, int end) {
+        if(left==start && right==end){
+            return segmentTree[node];
+        }
+        int mid = start+(end-start)/2;
+        if(right <= mid){
+            return range(left, right, node*2+1, start, mid);
+        }else if(left > mid){
+            return range(left, right, node*2+2, mid+1, end);
+        }else{
+            return range(left, mid, node*2+1, start, mid) + range(mid+1, right, node*2+2, mid+1, end);
+        }
+    }
+
+    /**
+     * 离散化处理
+     *
+     * nums数组中可能有负数或者可能稀疏 -> 离散化处理
+     *
+     * @param nums
+     */
+    private void discrete(ArrayList<Integer> nums) {
+        Set<Integer> set = new HashSet<>(nums);
+        int size = set.size();
+        d = new int[size];
+        int index = 0;
+        for(int num : set){
+            d[index++] = num;
+        }
+        Arrays.sort(d);
+    }
+
+    /**
+     * 二分: 根据num获取树状数组id (num -> id)
+     * @param num
+     * @return
+     */
+    private int getIdByNum(int num) {
+        return Arrays.binarySearch(d, num)+1;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 线段树(Segment Tree): 树实现
+     * @param nums
+     * @return
+     */
+    private ArrayList<Integer> solution5(ArrayList<Integer> nums){
+        n = nums.size();
+        result = new int[n];
+        TreeNode root = new TreeNode(0, n);
+
+        // 离散化处理
+        discrete(nums);
+
+        int num;
+        // 从后往前遍历
+        for(int i=n-1; i>=0; i--){
+            num = nums.get(i);
+            // 线段树id
+            int id = getIdByNum(num);
+            // 根据id获取区间和 严格小于(id-1) range: left<=right
+            result[i] += sumRange(root, 0, id-1);
+            // 更新前缀和
+            update(root, id, 1);
+        }
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int cnt : result){
+            list.add(cnt);
+        }
+
+        return list;
+    }
+
+    /**
+     * 更新: 根据id进行更新
+     * @param root
+     * @param id
+     * @param val
+     */
+    public void update(TreeNode root, int id, int val) {
+        change(id, val, root);
+    }
+
+    /**
+     * 区间和
+     * @param root
+     * @param left
+     * @param right
+     * @return
+     */
+    public int sumRange(TreeNode root, int left, int right) {
+        return range(left, right, root);
+    }
+
+    /**
+     * 递归: 更新线段树
+     * @param index
+     * @param val
+     * @param root
+     */
+    private void change(int index, int val, TreeNode root) {
+        if(root.start == root.end){
+            root.sum += val;
+            return;
+        }
+
+        int mid = root.start+(root.end-root.start)/2;
+        if(root.left == null){
+            root.left = new TreeNode(root.start, mid);
+        }
+        if(root.right == null){
+            root.right = new TreeNode(mid+1, root.end);
+        }
+
+        if(index <= mid){
+            change(index, val, root.left);
+        }else{
+            change(index, val, root.right);
+        }
+
+        root.sum = root.left.sum+root.right.sum;
+    }
+
+    /**
+     * 递归: 区间和
+     * @param left
+     * @param right
+     * @param root
+     * @return
+     */
+    private int range(int left, int right, TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        if(left==root.start && right==root.end){
+            return root.sum;
+        }
+
+        int mid = root.start+(root.end-root.start)/2;
+        if(root.left == null){
+            root.left = new TreeNode(root.start, mid);
+        }
+        if(root.right == null){
+            root.right = new TreeNode(mid+1, root.end);
+        }
+
+        if(right <= mid){
+            return range(left, right, root.left);
+        }else if(left > mid){
+            return range(left, right, root.right);
+        }else{
+            return range(left, mid, root.left)+range(mid+1, right, root.right);
+        }
+    }
+
+    public class TreeNode {
+        // 区间
+        int start,end;
+        int sum = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        public TreeNode(int start, int end) {
+            this.start = start;
+            this.end = end;
         }
     }
 }
