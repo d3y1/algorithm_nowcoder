@@ -18,8 +18,56 @@ public class NC219{
      * @return string字符串
      */
     public String removeKnums (String num, int k) {
-        return solution1(num, k);
+        return solution0(num, k);
+//        return solution1(num, k);
 //        return solution2(num, k);
+    }
+
+    /**
+     * 单调栈+贪心
+     *
+     * Deque(双端队列)实现单调栈更灵活!
+     *
+     * @param num
+     * @param k
+     * @return
+     */
+    private String solution0(String num, int k){
+        int n = num.length();
+        if(k >= n){
+            return "0";
+        }
+
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for(char ch: num.toCharArray()){
+            // 单调栈(单调增)
+            while(!stack.isEmpty() && stack.peekLast()>ch && k>0){
+                // 贪心
+                stack.pollLast();
+                k--;
+            }
+            stack.offerLast(ch);
+        }
+
+        // 继续移除
+        while(!stack.isEmpty() && k>0){
+            stack.pollLast();
+            k--;
+        }
+
+        // 去掉前导0
+        while(!stack.isEmpty() && stack.peekFirst()=='0'){
+            stack.pollFirst();
+        }
+
+        // 保存结果
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.append(stack.pollFirst());
+        }
+
+        return sb.length()==0?"0":sb.toString();
     }
 
     /**
