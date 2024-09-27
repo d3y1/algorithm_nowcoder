@@ -32,7 +32,7 @@ public class NC405{
         // 滑动窗口(双指针)
         for(int i=0; i<n; i++){
             product = 1;
-            // 贪心
+            // 贪心(固定左边界)
             for(int j=i; j<n; j++){
                 product *= nums.get(j);
                 if(product < k){
