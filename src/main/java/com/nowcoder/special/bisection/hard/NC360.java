@@ -10,7 +10,20 @@ import java.util.Set;
  * @author d3y1
  */
 public class NC360{
-    private int[] index;
+    // 树状数组t
+    private int[] t;
+
+    // 线段树
+    private int[] segmentTree;
+    private SegNode[] segTree;
+
+    // 离散化: 将nums离散化(去重+排序), 转化为数组d
+    private int[] d;
+
+    // 归并
+    private int[] idx;
+
+    private int n;
     private int[] result;
 
     /**
@@ -43,7 +56,7 @@ public class NC360{
      */
     private ArrayList<Integer> solution1(ArrayList<Integer> nums){
         int n = nums.size();
-        this.result = new int[n];
+        result = new int[n];
 
         ArrayList<Integer> list = new ArrayList<>();
         list.add(nums.get(n-1));
@@ -97,10 +110,10 @@ public class NC360{
      */
     private ArrayList<Integer> solution2(ArrayList<Integer> nums){
         int n = nums.size();
-        this.result = new int[n];
+        result = new int[n];
 
         // 离散化处理
-        discretization(nums);
+        discrete(nums);
 
         // 初始化
         init(n+1);
@@ -110,7 +123,7 @@ public class NC360{
         for(int i=n-1; i>=0; i--){
             num = nums.get(i);
             // 树状数组id
-            int id = getId(num);
+            int id = getIdByNum(num);
             // 根据id获取前缀和 严格小于(id-1)
             result[i] += query(id-1);
             // 更新前缀和
@@ -124,11 +137,6 @@ public class NC360{
 
         return list;
     }
-
-    // 树状数组t
-    private int[] t;
-    // 将nums离散化, 去重+排序, 转化为数组a
-    private int[] a;
 
     /**
      * 初始化
@@ -189,33 +197,6 @@ public class NC360{
         return ret;
     }
 
-    /**
-     * 离散化处理
-     *
-     * nums数组中可能有负数或者可能稀疏 -> 离散化处理
-     *
-     * @param nums
-     */
-    private void discretization(ArrayList<Integer> nums) {
-        Set<Integer> set = new HashSet<>(nums);
-        int size = set.size();
-        a = new int[size];
-        int index = 0;
-        for (int num : set) {
-            a[index++] = num;
-        }
-        Arrays.sort(a);
-    }
-
-    /**
-     * 二分: 根据num获取树状数组id (num -> id)
-     * @param num
-     * @return
-     */
-    private int getId(int num) {
-        return Arrays.binarySearch(a, num)+1;
-    }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -229,10 +210,10 @@ public class NC360{
         Integer[] numsArr = new Integer[n];
         nums.toArray(numsArr);
 
-        this.result = new int[n];
-        this.index = new int[n];
+        result = new int[n];
+        idx = new int[n];
         for(int i=0; i<n; i++){
-            index[i] = i;
+            idx[i] = i;
         }
 
         mergeSort(numsArr, 0, n-1);
@@ -281,168 +262,135 @@ public class NC360{
         int q = mid+1;
         while(p<=mid && q<=right) {
             if(nums[p] <= nums[q]){
-                result[index[p]] += q-mid-1;
-                helpIdx[i] = index[p];
+                result[idx[p]] += q-mid-1;
+                helpIdx[i] = idx[p];
                 helpNum[i] = nums[p];
                 i++;
                 p++;
             }else{
-                helpIdx[i] = index[q];
+                helpIdx[i] = idx[q];
                 helpNum[i] = nums[q];
                 i++;
                 q++;
             }
         }
         while(p <= mid){
-            result[index[p]] += q-mid-1;
-            helpIdx[i] = index[p];
+            result[idx[p]] += q-mid-1;
+            helpIdx[i] = idx[p];
             helpNum[i] = nums[p];
             i++;
             p++;
         }
         while(q <= right){
-            helpIdx[i] = index[q];
+            helpIdx[i] = idx[q];
             helpNum[i] = nums[q];
             i++;
             q++;
         }
         for(i=0; i<len; i++){
-            index[left+i] = helpIdx[i];
+            idx[left+i] = helpIdx[i];
             nums[left+i] = helpNum[i];
         }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * 线段树(Segment Tree): 数组实现(堆式存储)
-     * @param nums
-     * @return
-     */
-    private ArrayList<Integer> solution4(ArrayList<Integer> nums){
-        n = nums.size();
-        result = new int[n];
-        segmentTree = new int[n*4];
+    // /**
+    //  * 线段树(Segment Tree): 数组实现(堆式存储)
+    //  * @param nums
+    //  * @return
+    //  */
+    // private ArrayList<Integer> solution4(ArrayList<Integer> nums){
+    //     n = nums.size();
+    //     result = new int[n];
+    //     segmentTree = new int[n*4];
 
-        // 离散化处理
-        discrete(nums);
+    //     // 离散化处理
+    //     discrete(nums);
 
-        int num;
-        // 从后往前遍历
-        for(int i=n-1; i>=0; i--){
-            num = nums.get(i);
-            // 线段树id
-            int id = getIdByNum(num);
-            // 根据id获取区间和 严格小于(id-1) range: left<=right
-            result[i] += sumRange(0, id-1);
-            // 更新前缀和
-            update(id, 1);
-        }
+    //     int num;
+    //     // 从后往前遍历
+    //     for(int i=n-1; i>=0; i--){
+    //         num = nums.get(i);
+    //         // 线段树id
+    //         int id = getIdByNum(num);
+    //         // 根据id获取区间和 严格小于(id-1) range: left<=right
+    //         result[i] += sumRange(0, id-1);
+    //         // 更新前缀和
+    //         update(id, 1);
+    //     }
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for(int cnt : result){
-            list.add(cnt);
-        }
+    //     ArrayList<Integer> list = new ArrayList<Integer>();
+    //     for(int cnt : result){
+    //         list.add(cnt);
+    //     }
 
-        return list;
-    }
+    //     return list;
+    // }
 
-    // 线段树
-    private int[] segmentTree;
-    // 将nums离散化, 去重+排序, 转化为数组a
-    private int[] d;
-    private int n;
+    // /**
+    //  * 更新: 根据id进行更新
+    //  * @param id
+    //  * @param val
+    //  */
+    // public void update(int id, int val) {
+    //     change(id, val, 0, 0, n);
+    // }
 
-    /**
-     * 更新: 根据id进行更新
-     * @param id
-     * @param val
-     */
-    public void update(int id, int val) {
-        change(id, val, 0, 0, n);
-    }
+    // /**
+    //  * 区间和
+    //  * @param left
+    //  * @param right
+    //  * @return
+    //  */
+    // public int sumRange(int left, int right) {
+    //     return range(left, right, 0, 0, n);
+    // }
 
-    /**
-     * 区间和
-     * @param left
-     * @param right
-     * @return
-     */
-    public int sumRange(int left, int right) {
-        return range(left, right, 0, 0, n);
-    }
+    // /**
+    //  * 递归: 更新线段树
+    //  * @param index
+    //  * @param val
+    //  * @param node
+    //  * @param start
+    //  * @param end
+    //  */
+    // private void change(int index, int val, int node, int start, int end) {
+    //     if(start == end){
+    //         segmentTree[node] += val;
+    //         return;
+    //     }
+    //     int mid = start+(end-start)/2;
+    //     if(index <= mid){
+    //         change(index, val, node*2+1, start, mid);
+    //     }else{
+    //         change(index, val, node*2+2, mid+1, end);
+    //     }
+    //     segmentTree[node] = segmentTree[node*2+1]+segmentTree[node*2+2];
+    // }
 
-    /**
-     * 递归: 更新线段树
-     * @param index
-     * @param val
-     * @param node
-     * @param start
-     * @param end
-     */
-    private void change(int index, int val, int node, int start, int end) {
-        if(start == end){
-            segmentTree[node] += val;
-            return;
-        }
-        int mid = start+(end-start)/2;
-        if(index <= mid){
-            change(index, val, node*2+1, start, mid);
-        }else{
-            change(index, val, node*2+2, mid+1, end);
-        }
-        segmentTree[node] = segmentTree[node*2+1]+segmentTree[node*2+2];
-    }
-
-    /**
-     * 递归: 区间和
-     * @param left
-     * @param right
-     * @param node
-     * @param start
-     * @param end
-     * @return
-     */
-    private int range(int left, int right, int node, int start, int end) {
-        if(left==start && right==end){
-            return segmentTree[node];
-        }
-        int mid = start+(end-start)/2;
-        if(right <= mid){
-            return range(left, right, node*2+1, start, mid);
-        }else if(left > mid){
-            return range(left, right, node*2+2, mid+1, end);
-        }else{
-            return range(left, mid, node*2+1, start, mid) + range(mid+1, right, node*2+2, mid+1, end);
-        }
-    }
-
-    /**
-     * 离散化处理
-     *
-     * nums数组中可能有负数或者可能稀疏 -> 离散化处理
-     *
-     * @param nums
-     */
-    private void discrete(ArrayList<Integer> nums) {
-        Set<Integer> set = new HashSet<>(nums);
-        int size = set.size();
-        d = new int[size];
-        int index = 0;
-        for(int num : set){
-            d[index++] = num;
-        }
-        Arrays.sort(d);
-    }
-
-    /**
-     * 二分: 根据num获取树状数组id (num -> id)
-     * @param num
-     * @return
-     */
-    private int getIdByNum(int num) {
-        return Arrays.binarySearch(d, num)+1;
-    }
+    // /**
+    //  * 递归: 区间和
+    //  * @param left
+    //  * @param right
+    //  * @param node
+    //  * @param start
+    //  * @param end
+    //  * @return
+    //  */
+    // private int range(int left, int right, int node, int start, int end) {
+    //     if(left==start && right==end){
+    //         return segmentTree[node];
+    //     }
+    //     int mid = start+(end-start)/2;
+    //     if(right <= mid){
+    //         return range(left, right, node*2+1, start, mid);
+    //     }else if(left > mid){
+    //         return range(left, right, node*2+2, mid+1, end);
+    //     }else{
+    //         return range(left, mid, node*2+1, start, mid) + range(mid+1, right, node*2+2, mid+1, end);
+    //     }
+    // }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -702,9 +650,6 @@ public class NC360{
         return list;
     }
 
-    // 线段树
-    private SegNode[] segTree;
-
     /**
      * 更新: 根据id进行更新(单点修改)
      * @param id
@@ -794,120 +739,120 @@ public class NC360{
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * 线段树(Segment Tree): 树实现
-     * @param nums
-     * @return
-     */
-    private ArrayList<Integer> solution5(ArrayList<Integer> nums){
-        n = nums.size();
-        result = new int[n];
-        TreeNode root = new TreeNode(0, n);
+    // /**
+    //  * 线段树(Segment Tree): 树实现
+    //  * @param nums
+    //  * @return
+    //  */
+    // private ArrayList<Integer> solution5(ArrayList<Integer> nums){
+    //     n = nums.size();
+    //     result = new int[n];
+    //     TreeNode root = new TreeNode(0, n);
 
-        // 离散化处理
-        discrete(nums);
+    //     // 离散化处理
+    //     discrete(nums);
 
-        int num;
-        // 从后往前遍历
-        for(int i=n-1; i>=0; i--){
-            num = nums.get(i);
-            // 线段树id
-            int id = getIdByNum(num);
-            // 根据id获取区间和 严格小于(id-1) range: left<=right
-            result[i] += sumRange(root, 0, id-1);
-            // 更新前缀和
-            update(root, id, 1);
-        }
+    //     int num;
+    //     // 从后往前遍历
+    //     for(int i=n-1; i>=0; i--){
+    //         num = nums.get(i);
+    //         // 线段树id
+    //         int id = getIdByNum(num);
+    //         // 根据id获取区间和 严格小于(id-1) range: left<=right
+    //         result[i] += sumRange(root, 0, id-1);
+    //         // 更新前缀和
+    //         update(root, id, 1);
+    //     }
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for(int cnt : result){
-            list.add(cnt);
-        }
+    //     ArrayList<Integer> list = new ArrayList<Integer>();
+    //     for(int cnt : result){
+    //         list.add(cnt);
+    //     }
 
-        return list;
-    }
+    //     return list;
+    // }
 
-    /**
-     * 更新: 根据id进行更新
-     * @param root
-     * @param id
-     * @param val
-     */
-    public void update(TreeNode root, int id, int val) {
-        change(root, id, val);
-    }
+    // /**
+    //  * 更新: 根据id进行更新
+    //  * @param root
+    //  * @param id
+    //  * @param val
+    //  */
+    // public void update(TreeNode root, int id, int val) {
+    //     change(root, id, val);
+    // }
 
-    /**
-     * 递归: 更新线段树
-     * @param root
-     * @param index
-     * @param val
-     */
-    private void change(TreeNode root, int index, int val) {
-        if(root.start == root.end){
-            root.sum += val;
-            return;
-        }
+    // /**
+    //  * 递归: 更新线段树
+    //  * @param root
+    //  * @param index
+    //  * @param val
+    //  */
+    // private void change(TreeNode root, int index, int val) {
+    //     if(root.start == root.end){
+    //         root.sum += val;
+    //         return;
+    //     }
 
-        int mid = root.start+(root.end-root.start)/2;
-        if(root.left == null){
-            root.left = new TreeNode(root.start, mid);
-        }
-        if(root.right == null){
-            root.right = new TreeNode(mid+1, root.end);
-        }
+    //     int mid = root.start+(root.end-root.start)/2;
+    //     if(root.left == null){
+    //         root.left = new TreeNode(root.start, mid);
+    //     }
+    //     if(root.right == null){
+    //         root.right = new TreeNode(mid+1, root.end);
+    //     }
 
-        if(index <= mid){
-            change(root.left, index, val);
-        }else{
-            change(root.right, index, val);
-        }
+    //     if(index <= mid){
+    //         change(root.left, index, val);
+    //     }else{
+    //         change(root.right, index, val);
+    //     }
 
-        root.sum = root.left.sum+root.right.sum;
-    }
+    //     root.sum = root.left.sum+root.right.sum;
+    // }
 
-    /**
-     * 区间和
-     * @param root
-     * @param left
-     * @param right
-     * @return
-     */
-    public int sumRange(TreeNode root, int left, int right) {
-        return range(root, left, right);
-    }
+    // /**
+    //  * 区间和
+    //  * @param root
+    //  * @param left
+    //  * @param right
+    //  * @return
+    //  */
+    // public int sumRange(TreeNode root, int left, int right) {
+    //     return range(root, left, right);
+    // }
 
-    /**
-     * 递归: 区间和
-     * @param root
-     * @param left
-     * @param right
-     * @return
-     */
-    private int range(TreeNode root, int left, int right) {
-        if(root == null){
-            return 0;
-        }
-        if(left==root.start && right==root.end){
-            return root.sum;
-        }
+    // /**
+    //  * 递归: 区间和
+    //  * @param root
+    //  * @param left
+    //  * @param right
+    //  * @return
+    //  */
+    // private int range(TreeNode root, int left, int right) {
+    //     if(root == null){
+    //         return 0;
+    //     }
+    //     if(left==root.start && right==root.end){
+    //         return root.sum;
+    //     }
 
-        int mid = root.start+(root.end-root.start)/2;
-        if(root.left == null){
-            root.left = new TreeNode(root.start, mid);
-        }
-        if(root.right == null){
-            root.right = new TreeNode(mid+1, root.end);
-        }
+    //     int mid = root.start+(root.end-root.start)/2;
+    //     if(root.left == null){
+    //         root.left = new TreeNode(root.start, mid);
+    //     }
+    //     if(root.right == null){
+    //         root.right = new TreeNode(mid+1, root.end);
+    //     }
 
-        if(right <= mid){
-            return range(root.left, left, right);
-        }else if(left > mid){
-            return range(root.right, left, right);
-        }else{
-            return range(root.left, left, mid)+range(root.right, mid+1, right);
-        }
-    }
+    //     if(right <= mid){
+    //         return range(root.left, left, right);
+    //     }else if(left > mid){
+    //         return range(root.right, left, right);
+    //     }else{
+    //         return range(root.left, left, mid)+range(root.right, mid+1, right);
+    //     }
+    // }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1018,6 +963,37 @@ public class NC360{
 
         return sum;
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 离散化处理
+     *
+     * nums数组中可能有负数或者可能稀疏 -> 离散化处理
+     *
+     * @param nums
+     */
+    private void discrete(ArrayList<Integer> nums) {
+        Set<Integer> set = new HashSet<>(nums);
+        int size = set.size();
+        d = new int[size];
+        int index = 0;
+        for(int num : set){
+            d[index++] = num;
+        }
+        Arrays.sort(d);
+    }
+
+    /**
+     * 二分: 根据num获取树状数组id (num -> id)
+     * @param num
+     * @return
+     */
+    private int getIdByNum(int num) {
+        return Arrays.binarySearch(d, num)+1;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public class TreeNode {
         // 区间
