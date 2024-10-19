@@ -7,6 +7,11 @@ import java.util.HashSet;
  * @author d3y1
  */
 public class NC3{
+    /**
+     * 相似 -> NC305 寻找唯一重复数 [nowcoder]
+     * @param pHead
+     * @return
+     */
     public ListNode EntryNodeOfLoop(ListNode pHead) {
         return solution1(pHead);
         // return solution2(pHead);
