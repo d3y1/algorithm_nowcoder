@@ -1,0 +1,2 @@
+<div>  给定一个整数数组，你需要找出一个连续子数组，将这个子数组升序排列后整个数组都将是升序数组。 </div> <div>  <br> </div> <div>  请你找出满足题设的最短的子数组。<br> <br> </div> <div>  数据范围：数组长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E4%20%5C"> ， 数组中的元素满足 <img src="https://www.nowcoder.com/equation?tex=%7Cval%7C%20%5Cle%2010%5E5%20%5C"><br> </div><div><br></div><div><div>Related Topics</div><div><li>单调栈</li><li>双指针</li><li>贪心</li></div></div><br>示例:<br>输入:[2,6,4,8,10,9,15]<br>输出:5
+<br>
