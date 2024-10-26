@@ -1,0 +1,2 @@
+<div>  给定链表的头节点，旋转链表，将链表每个节点往右移动 k 个位置，原链表后 k 个位置的节点则依次移动到链表头。 </div> <div>  <br> </div> <div>  即，例如链表 ： 1-&gt;2-&gt;3-&gt;4-&gt;5 k=2 则返回链表 4-&gt;5-&gt;1-&gt;2-&gt;3 </div> <div>  <br> </div> <div>  数据范围：链表中节点数满足 <img src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20n%20%5Cle%201000%5C"> ， <img src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20k%20%5Cle%2010%5E9%20%5C"><br> </div><div><br></div><div><div>Related Topics</div><div><li>链表</li><li>双指针</li></div></div><br>示例:<br>输入:{1,2,3,4,5},2<br>输出:{4,5,1,2,3}
+<br>
