@@ -1,0 +1,2 @@
+<div>  给定两个字符串 S 和 T ，判断 S 是否是 T 的子序列。 </div> <div>  即是否可以从 T 删除一些字符转换成 S。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20len(S)%20%5Cle%20100%20%5C"> ， <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20len(T)%20%5Cle%2010%5E4%20%5C">，保证字符串中仅含有小写字母<br> </div><div><br></div><div><div>Related Topics</div><div><li>动态规划</li><li>字符串</li><li>双指针</li></div></div><br>示例:<br>输入:"nowcoder","nowcoder"<br>输出:true
+<br>
