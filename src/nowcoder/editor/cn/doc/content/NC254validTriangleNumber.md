@@ -1,0 +1,2 @@
+<div>  给一个长度为N的非负整数数组nums，请你计算一下，有多少个三元组代表的边长可以组成三角形 </div> <div>  数据范围: </div> <div>  <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20N%20%5Cle%201000"><br> </div> <div>  <img alt="" src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20nums%5Bi%5D%20%5Cle%201000"><br> </div><div><br></div><div><div>Related Topics</div><div><li>二分</li><li>双指针</li></div></div><br>示例:<br>输入:[2,3,4,4]<br>输出:4
+<br>
