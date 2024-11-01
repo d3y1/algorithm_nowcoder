@@ -1,0 +1,2 @@
+<span>给定一个正整数<img alt="n" src="https://www.nowcoder.com/equation?tex=n"> ，请找出由该正整数各个数位组成的大于其本身的</span><strong>最小整数</strong><span>，成功找到将其返回，否则返回-1 。</span><br> <span>注意答案在</span><img alt="int" src="https://www.nowcoder.com/equation?tex=int"><span>范围内</span><div><br></div><div><div>Related Topics</div><div><li>字符串</li><li>双指针</li><li>基础数学</li></div></div><br>示例:<br>输入:13<br>输出:31
+<br>
