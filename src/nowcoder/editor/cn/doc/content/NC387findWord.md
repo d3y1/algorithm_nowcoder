@@ -1,0 +1,2 @@
+<div>  给定两个字符串 s 和 p ，请你找到 s 子数组中的全部 p 的异位词的起始点。异位词值可以通过重新排列字符顺序（或者不排列）而相等的词。 </div> <div>  你可以以任意顺序返回 </div> <div>  <br> </div> <div>  数据范围： s 和 p 的长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E4%20%5C"> ，字符串中仅包含小写英文字母 </div><div><br></div><div><div>Related Topics</div><div><li>字符串</li><li>哈希</li><li>双指针</li></div></div><br>示例:<br>输入:"cabac","abc"<br>输出:[0,2]
+<br>
