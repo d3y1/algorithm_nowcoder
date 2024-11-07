@@ -1,0 +1,1 @@
+<div>  给定一个长度为 n 的字符串，找出最多包含两种字符的最长子串 t ，返回这个最长的长度。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，字符串种仅包含小写英文字母 </div><div><br></div><div><div>Related Topics</div><div><li>贪心</li><li>双指针</li></div></div><br>示例:<br>输入:nowcoder<br>输出:2<br>
