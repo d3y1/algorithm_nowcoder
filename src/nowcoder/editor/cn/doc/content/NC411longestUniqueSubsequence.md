@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的字符串列表，返回他们中最长的特殊子序列的长度。 </div> <div>  <span>特殊子序列的定义是：某个字符串的某一个子序列（不一定连续），无法在另一个字符串中找到同样的子序列则称为特殊子序列。</span>  </div> <div>  <br> </div> <div>  数据范围：<img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%20100%20%5C">， 字符串长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20len(str)%20%5Cle%2050%20%5C"><br> </div><div><br></div><div><div>Related Topics</div><div><li>贪心</li><li>哈希</li><li>排序</li><li>双指针</li><li>数组</li></div></div><br>示例:<br>输入:["aba","bbb","eae"]<br>输出:3
+<br>
