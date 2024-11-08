@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的正整数数组 nums ， 请你找出这个数组中乘积小于 k 的连续子数组的个数。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ， 数组中的值满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20nums_i%20%5Cle%201000%20%20%5C"> ， <img src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20k%20%5Cle%2010%5E6%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>贪心</li><li>双指针</li></div></div><br>示例:<br>输入:[10,5,3,7],100<br>输出:7
+<br>
