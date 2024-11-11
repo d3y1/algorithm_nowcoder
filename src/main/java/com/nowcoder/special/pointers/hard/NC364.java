@@ -1,6 +1,7 @@
 package com.nowcoder.special.pointers.hard;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * NC364 至少有 K 个重复字符的最长子串
@@ -19,7 +20,8 @@ public class NC364{
         // return solution1(s, k);
         // return solution2(s, k);
         // return solution22(s, k);
-        return solution3(s, k);
+        // return solution3(s, k);
+        return solution33(s, k);
     }
 
     /**
@@ -189,6 +191,74 @@ public class NC364{
 
         // 枚举最长子串的字符种数
         for(int kind=1; kind<=26; kind++){
+            // 双指针 毛毛虫
+            int left=0, right=0;
+            // 滑动窗口内每种字符出现的次数统计
+            int[] cnt = new int[26];
+            // 滑动窗口内的字符种数
+            int total = 0;
+            // 滑动窗口内出现次数小于k的字符种数
+            int remain = 0;
+            char chL,chR;
+            while(right < n){
+                chR = s.charAt(right);
+                cnt[chR-'a']++;
+                if(cnt[chR-'a'] == 1){
+                    total++;
+                    remain++;
+                }
+                if(cnt[chR-'a'] == k){
+                    remain--;
+                }
+
+                while(total > kind){
+                    chL = s.charAt(left);
+                    cnt[chL-'a']--;
+                    if(cnt[chL-'a'] == k-1){
+                        remain++;
+                    }
+                    if(cnt[chL-'a'] == 0){
+                        total--;
+                        remain--;
+                    }
+                    left++;
+                }
+
+                if(remain == 0){
+                    result = Math.max(result, right-left+1);
+                }
+
+                right++;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 双指针
+     *
+     * 相似 -> NC402 包含不超过两种字符的最长子串 [nowcoder]
+     * 相似 -> NC41 最长无重复子数组            [nowcoder]
+     * 相似 -> NC170 最长不含重复字符的子字符串   [nowcoder]
+     * 相似 -> NC356 至多包含K种字符的子串       [nowcoder]
+     * 相似 -> NC387 找到字符串中的异位词        [nowcoder]
+     *
+     * @param s
+     * @param k
+     * @return
+     */
+    private int solution33(String s, int k){
+        int n = s.length();
+        int result = 0;
+
+        HashSet<Character> set = new HashSet<>();
+        for(char ch: s.toCharArray()){
+            set.add(ch);
+        }
+
+        // 枚举最长子串的字符种数
+        for(int kind=1; kind<=set.size(); kind++){
             // 双指针 毛毛虫
             int left=0, right=0;
             // 滑动窗口内每种字符出现的次数统计
