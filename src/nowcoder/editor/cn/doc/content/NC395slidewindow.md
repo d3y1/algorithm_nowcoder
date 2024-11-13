@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的正整数数组，和一个窗口长度 k ，有一个长度为 k 的窗口从最左端滑到最右端。请你算出所有窗口的中位数。 </div> <div>  中位数是有序数组最中间的数，如果序列长度是偶数，中位数就是两个最中间的数的平均数。 </div> <div>  <br> </div> <div>  数据范围：数组长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，数组中的值满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20val%20%5Cle%2010%5E5%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>哈希</li><li>堆</li><li>双指针</li></div></div><br>示例:<br>输入:[4,5,9,7,8,5],3<br>输出:[5,7,8,7]
+<br>
