@@ -72,7 +72,7 @@ public class NC75 {
     }
 
     /**
-     * 位运算
+     * 位运算: 异或和 + lowBit
      *
      * lowBit 整数n在二进制表示下最低位1及后面的0所构成的数值
      * 参考树状数组(Binary Indexed Tree)(也称Fenwick树)
