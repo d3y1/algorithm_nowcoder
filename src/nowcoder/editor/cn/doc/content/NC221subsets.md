@@ -1,0 +1,2 @@
+<div>  给定一个整数数组 nums ，其中可能包含重复元素，请你返回这个数组的所有可能子集。 </div> <div>  <br> </div> <div>  返回的答案中不能包含重复的子集，将答案按字典序进行排序。 </div> <div>  <br> </div> <div>  数据范围：数组长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20nums%20%5Cle%2010%20%5C"> ，数组中元素大小满足 <img src="https://www.nowcoder.com/equation?tex=%7Cval%7C%20%5Cle%2010%20%5C"><br> </div><div><br></div><div><div>Related Topics</div><div><li>数组</li><li>位运算</li><li>递归</li></div></div><br>示例:<br>输入:[1,2]<br>输出:[[],[1],[1,2],[2]]
+<br>
