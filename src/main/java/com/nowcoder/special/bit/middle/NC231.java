@@ -22,6 +22,8 @@ public class NC231 {
     public int singleNumber (int[] nums) {
         return solution1(nums);
         // return solution2(nums);
+        // return solution3(nums);
+        // return solution4(nums);
     }
 
     /**
@@ -56,7 +58,7 @@ public class NC231 {
 
         int result = 0;
         for(int i=31; i>=0; i--){
-            // bitSum[i]%T -> 消去出现T次的数位,剩余出现一次的数位
+            // bitSum[i]%T -> 消去出现T次的数的数位,剩余出现一次的数的数位
             result = (result<<1)+(bitSum[i]%T);
         }
 
