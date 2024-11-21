@@ -20,8 +20,9 @@ public class NC231 {
      * @return int整型
      */
     public int singleNumber (int[] nums) {
-        return solution1(nums);
-        // return solution2(nums);
+        // return solution1(nums);
+        return solution2(nums);
+        // return solution22(nums);
         // return solution3(nums);
         // return solution4(nums);
     }
@@ -60,6 +61,33 @@ public class NC231 {
         for(int i=31; i>=0; i--){
             // bitSum[i]%T -> 消去出现T次的数的数位,剩余出现一次的数的数位
             result = (result<<1)+(bitSum[i]%T);
+        }
+
+        return result;
+    }
+
+    /**
+     * 位运算: 数位累加求余
+     * @param nums
+     * @return
+     */
+    private int solution22(int[] nums){
+        // 比特位数
+        int len = 32;
+        // 同位比特累加
+        int[] bitSum = new int[len];
+        for(int num: nums){
+            for(int i=0; i<len; i++){
+                bitSum[i] += ((num>>i)&1);
+            }
+        }
+
+        int result = 0;
+        for(int i=31; i>=0; i--){
+            // bitSum[i]%T -> 消去出现T次的数的数位,剩余出现一次的数的数位
+            if(bitSum[i]%T == 1){
+                result |= (1<<i);
+            }
         }
 
         return result;
