@@ -1,0 +1,2 @@
+<div>  <span style="color: rgb(51,51,51);">给定一个长度为 n 的数组，请你返回任选两个数的最大异或值。</span>  </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，数组中的数满足 <img src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20val%20%5Cle%2010%5E9%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>位运算</li><li>哈希</li><li>字典树</li></div></div><br>示例:<br>输入:[1,2,3,4,5]<br>输出:7
+<br>
