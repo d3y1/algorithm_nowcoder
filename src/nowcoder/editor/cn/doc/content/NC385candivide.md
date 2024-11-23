@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的数组，和一个目标组数 k ，请问能否把这个数组划分成 k 个非空子集，其和都相等。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20k%5Cle%20n%20%5Cle%2015%20%5C"> ，数组中的值都满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20val%20%5Cle%2010%5E4%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>动态规划</li><li>记忆化搜索</li><li>位运算</li><li>递归</li></div></div><br>示例:<br>输入:[5,1,3,2,4],3<br>输出:true
+<br>
