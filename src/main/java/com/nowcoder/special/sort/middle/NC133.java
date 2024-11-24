@@ -47,7 +47,7 @@ public class NC133{
         return oddHead;
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next = null;
         public ListNode(int val) {

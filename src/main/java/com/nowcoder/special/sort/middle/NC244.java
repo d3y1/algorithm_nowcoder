@@ -119,7 +119,7 @@ public class NC244{
         return dummyHead.next;
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next = null;
         public ListNode(int val) {

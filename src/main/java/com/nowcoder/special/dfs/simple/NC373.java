@@ -40,7 +40,7 @@ public class NC373{
         preorder(root.right);
     }
 
-    public class TreeNode {
+    private class TreeNode {
         int val = 0;
         TreeNode left = null;
         TreeNode right = null;
