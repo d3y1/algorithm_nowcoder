@@ -43,7 +43,7 @@ public class NC58{
         inorder(root.right);
     }
 
-    public class TreeNode {
+    private class TreeNode {
         int val = 0;
         TreeNode left = null;
         TreeNode right = null;

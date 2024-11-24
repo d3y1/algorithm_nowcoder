@@ -995,7 +995,7 @@ public class NC360{
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public class TreeNode {
+    private class TreeNode {
         // 区间
         int start,end;
         int sum = 0;

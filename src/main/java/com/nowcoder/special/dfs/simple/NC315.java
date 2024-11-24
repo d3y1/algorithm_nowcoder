@@ -63,7 +63,7 @@ public class NC315{
         preorder(root1.right, root2.right);
     }
 
-    public class TreeNode {
+    private class TreeNode {
         int val = 0;
         TreeNode left = null;
         TreeNode right = null;

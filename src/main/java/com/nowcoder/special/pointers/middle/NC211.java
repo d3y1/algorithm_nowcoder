@@ -97,7 +97,7 @@ public class NC211{
         return head;
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next = null;
         public ListNode(int val) {
