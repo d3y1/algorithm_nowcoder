@@ -25,6 +25,10 @@ public class NC223 {
 
     /**
      * 哈希 + 递归
+     *
+     * 输入: [2,1,5,6,4,3],[2,6,5,4,3,1]
+     * 输出: {1,2,3,#,#,4,#,5,#,#,6}
+     *
      * @param inorder
      * @param postorder
      * @return
