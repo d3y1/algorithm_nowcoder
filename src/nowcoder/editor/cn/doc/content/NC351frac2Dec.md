@@ -1,0 +1,2 @@
+<div>  给定两个整数 n 和 m，分别表示分数的分子和分母，请你计算其小数的表示形式并以字符串形式返回。 </div> <div>  <br> </div> <div>  如果返回结果中包含循环小数，则将循环节包含在括号中。 </div> <div>  如果存在循环小数，请输出最小的循环节。 </div> <div>  <br> </div> <div>  数据范围：两个整数都满足 <img src="https://www.nowcoder.com/equation?tex=val%20%5Cle%20%20%7C2%5E%7B30%7D%7C%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>哈希</li><li>基础数学</li></div></div><br>示例:<br>输入:1,3<br>输出:"0.(3)"
+<br>
