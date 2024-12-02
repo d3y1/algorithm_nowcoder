@@ -1,0 +1,2 @@
+<span>给定一个 </span><img src="https://www.nowcoder.com/equation?tex=n%20%5Ctimes%20m%20%5C"><span> 的矩阵matrix如果矩阵中任一元素是 0 ，则将其所在行列都设为 0，请你在<span>matrix本身修改，即原地修改</span> 。</span><br> <br> <span>数据范围： </span><img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%2Cm%20%5Cle%201000%20%5C"><span> ， 矩阵中的值都满足 </span><img src="https://www.nowcoder.com/equation?tex=%7Cval%7C%20%5Cle%2010%5E9%20%5C"><div><br></div><div><div>Related Topics</div><div><li>哈希</li></div></div><br>示例:<br>输入:[[1,1,1],[1,0,1],[1,1,1]]<br>输出:[[1,0,1],[0,0,0],[1,0,1]]
+<br>
