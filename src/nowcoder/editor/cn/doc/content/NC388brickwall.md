@@ -1,0 +1,2 @@
+<div>  牛牛有一堵砖墙，墙上有 n 行砖块，所有砖的高度都是一样的，尽管整面墙的宽度是一样，但是每块砖的宽度可能不一样。你要在这堵墙上放置一条平行于砖墙垂直于地面的垂线，请问这个垂线最少需要经过几块砖。如果你画的线只是从砖块边缘经过则不算是经过。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%201000%20%5C"> ，整面墙的宽度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20val%20%5Cle%201000%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>哈希</li></div></div><br>示例:<br>输入:[[1,2,2,1],[2,4],[3,1,2],[6],[3,3]]<br>输出:2
+<br>
