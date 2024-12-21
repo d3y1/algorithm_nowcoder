@@ -98,7 +98,7 @@ public class NC3 {
         return null;
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next = null;
 

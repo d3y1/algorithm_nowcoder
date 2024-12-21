@@ -31,7 +31,7 @@ public class NC33 {
         }
     }
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next = null;
         public ListNode(int val) {
