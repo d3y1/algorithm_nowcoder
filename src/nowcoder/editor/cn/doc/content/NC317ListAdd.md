@@ -1,0 +1,2 @@
+<div>  给定两个非空链表逆序存储的的非负整数，每个节点只存储一位数组。 </div> <div>  请你把两个链表相加以下相同方法返回链表，保证两个数都不会以 0 开头。 </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，每个节点的值都满足 <img src="https://www.nowcoder.com/equation?tex=0%20%5Cle%20val%20%5Cle%209%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>模拟</li><li>链表</li></div></div><br>示例:<br>输入:{2,5,6},{5,6,1}<br>输出:{7,1,8}
+<br>
