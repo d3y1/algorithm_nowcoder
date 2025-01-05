@@ -9,7 +9,10 @@ import java.util.Queue;
  * @author d3y1
  */
 public class NC123 {
-    private StringBuilder sb = new StringBuilder("");
+    private StringBuilder sb = new StringBuilder();
+
+    private String strSE;
+    private int idx = 0;
 
     /**
      * 序列化
@@ -17,7 +20,11 @@ public class NC123 {
      * @return
      */
     String Serialize(TreeNode root) {
+        // 层序遍历
         return Serialize1(root);
+
+        // 前序遍历
+        // return Serialize2(root);
     }
 
     /**
@@ -71,13 +78,55 @@ public class NC123 {
     }
 
     /**
+     * 前序遍历
+     * @param root
+     * @return
+     */
+    String Serialize2(TreeNode root) {
+        if(root == null){
+            return "{}";
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        sb.append("{");
+        preOrderSE(root);
+        sb.append("}");
+
+        return sb.toString();
+    }
+
+    /**
+     * 前序遍历: 递归
+     * @param root
+     */
+    private void preOrderSE(TreeNode root){
+        if(root == null){
+            sb.append("#");
+            return;
+        }
+
+        sb.append(root.val).append("^");
+
+        preOrderSE(root.left);
+        preOrderSE(root.right);
+    }
+
+
+
+    /**
      * 反序列化
      * @param str
      * @return
      */
     TreeNode Deserialize(String str) {
+        // 层序遍历
         // return Deserialize1(str);
         return Deserialize11(str);
+
+        // 前序遍历
+        // return Deserialize2(str);
     }
 
     /**
@@ -192,6 +241,65 @@ public class NC123 {
         }
 
         return root;
+    }
+
+    /**
+     * 前序遍历
+     * @param str
+     * @return
+     */
+    TreeNode Deserialize2(String str) {
+        if(str.equals("{}")){
+            return null;
+        }
+
+        strSE = str.substring(1,str.length()-1);
+
+        return preOrderDE();
+    }
+
+    /**
+     * 前序遍历: 递归
+     * @return
+     */
+    private TreeNode preOrderDE(){
+        char ch = strSE.charAt(idx);
+        if(ch == '#'){
+            idx++;
+            return null;
+        }
+        int val = -1;
+        if(Character.isDigit(ch)){
+            val = getValue();
+        }
+
+        TreeNode root = new TreeNode(val);
+
+        root.left = preOrderDE();
+        root.right = preOrderDE();
+
+        return root;
+    }
+
+    /**
+     * 获取节点的值
+     * @return
+     */
+    private int getValue(){
+        int val = 0;
+        char ch;
+        while(idx < strSE.length()){
+            ch = strSE.charAt(idx);
+            idx++;
+            if(ch == '^'){
+                return val;
+            }
+            if(Character.isDigit(ch)){
+                val = val*10+(ch-'0');
+            }
+        }
+
+        return val;
     }
 
     private class TreeNode {
