@@ -1,0 +1,2 @@
+<div>  给定一个二叉树，请你求出此二叉树的最大宽度。 </div> <div>  <br> </div> <div>  本题中树第 i 层的宽度定义为：第 i 层最左边的节点到最右边之间的距离，中间空节点也计入距离。 </div> <div>  <br> </div> <div>  例如： </div> <div>  <img alt="" src="https://uploadfiles.nowcoder.com/images/20211112/392807_1636703649167/446AF1625A26900F78E1D58D05AB3D9B"><br> </div> <div>  本树中第 1 层只有一个节点，故第 1 层宽度是 1 ，第二层最左侧到最右侧的距离是 2 ，所以宽度是 2 ， 第三层最左侧 4 到最右侧 5 距离是 4 ，故宽度是 4，此树最大宽度是 4。 </div><div><br></div><div><div>Related Topics</div><div><li>树</li><li>dfs</li><li>广度优先搜索(BFS)</li></div></div><br>示例:<br>输入:{1,2,3,4,#,4,5}<br>输出:4
+<br>
