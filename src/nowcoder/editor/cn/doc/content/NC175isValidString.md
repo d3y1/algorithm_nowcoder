@@ -1,0 +1,2 @@
+<div>  给定一个字符串s，字符串s只包含以下三种字符: (，*，)，请你判断 s是不是一个合法的括号字符串。合法括号字符串有如下规则: </div> <div>  1.左括号'('必须有对应的右括号')' </div> <div>  <span>2.右括号')'必须有对应的左括号'('</span>  </div> <div>  3.左括号必须在对应的右括号前面<br> </div> <div>  4.*可以视为单个左括号，也可以视为单个右括号，或者视为一个空字符 </div> <div>  5.空字符串也视为合法的括号字符串 </div> <div>  <br> </div> <div>  数据范围: </div> <div>  <img alt="" src="https://www.nowcoder.com/equation?tex=1%3C%3Ds.length%3C%3D100"><br> </div><div><br></div><div><div>Related Topics</div><div><li>贪心</li><li>动态规划</li><li>字符串</li><li>栈</li></div></div><br>示例:<br>输入:"()()"<br>输出:true
+<br>
