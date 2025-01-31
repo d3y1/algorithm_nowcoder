@@ -1,0 +1,2 @@
+<div>  给一个加密过的字符串解码，返回解码后的字符串。 </div> <div>  <br> </div> <div>  加密方法是：k[c] ，表示中括号中的 c 字符串重复 k 次，例如 3[a] 解码结果是 aaa ，保证输入字符串符合规则。不会出现类似 3a , 3[3] 这样的输入。 </div> <div>  <br> </div> <div>  数据范围：输出的字符串长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2050%20%5C"><br> </div><div><br></div><div><div>Related Topics</div><div><li>字符串</li><li>栈</li><li>递归</li></div></div><br>示例:<br>输入:"3[a]"<br>输出:"aaa"
+<br>
