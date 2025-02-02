@@ -1,0 +1,2 @@
+<div>  给定一个逆波兰表达式，求表达式的值。 </div> <div>  <br> </div> <div>  数据范围：表达式长度满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E4%20%5C"> ，表达式中仅包含数字和 + ，- , * , / ，其中数字的大小满足 <img src="https://www.nowcoder.com/equation?tex=%7Cval%7C%20%5Cle%20200%20%5C">。<br> </div><div><br></div><div><div>Related Topics</div><div><li>数组</li><li>栈</li><li>基础数学</li></div></div><br>示例:<br>输入:["2","1","+","4","*"]<br>输出:12
+<br>
