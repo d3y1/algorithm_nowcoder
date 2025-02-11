@@ -19,8 +19,8 @@ public class NC384 {
         // return solution2(nums);
         // return solution3(nums);
         // return solution4(nums);
+        return solution44(nums);
         // return solution5(nums);
-        return solution6(nums);
     }
 
     /**
@@ -269,7 +269,7 @@ public class NC384 {
                 maxK = stack.pop();
             }
 
-//            stack.push(num);
+            // stack.push(num);
             // 优化 -> 不会将maxK更新为更大的值(不用入栈)
             if(num > maxK){
                 stack.push(num);
@@ -280,7 +280,53 @@ public class NC384 {
     }
 
     /**
-     * 枚举k: 单调栈(单调减)+二分(单调栈上二分)
+     * 枚举i: 单调栈(单调减)
+     *
+     * i<j<k
+     * ... i ... j ... k ...
+     * ... 1 ... 3 ... 2 ...
+     *
+     * nums[i]<nums[k] && nums[k]<nums[j]
+     * => nums[i]<nums[k]<nums[j]
+     *
+     * @param nums
+     * @return
+     */
+    private boolean solution44(ArrayList<Integer> nums){
+        int n = nums.size();
+        if (n < 3) {
+            return false;
+        }
+
+        Stack<Integer> stack = new Stack<>();
+        int maxK = Integer.MIN_VALUE;
+
+        int num;
+        // 枚举i
+        for(int i=n-1; i>=0; i--){
+            num = nums.get(i);
+            // nums[i]<nums[k]
+            if(num < maxK){
+                return true;
+            }
+
+            // 单调栈 单调减(从右向左)[可求解当前num右边: 小于num的最大值 或 大于num的最小值] nums[k]<nums[j]
+            while(!stack.isEmpty() && stack.peek()<num){
+                // maxK: 当前num右边小于num的最大值
+                maxK = stack.pop();
+            }
+            // stack.push(num);
+            // 优化
+            if(num > maxK){
+                stack.push(num);
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * 枚举k: 双单调栈(单调减)+二分(单调栈上二分)
      *
      * i<j<k
      * ... i ... j ... k ...
@@ -299,10 +345,10 @@ public class NC384 {
         }
 
         // 模拟单调栈(单调减)
-        List<Integer> candidateI = new ArrayList<Integer>();
+        List<Integer> candidateI = new ArrayList<>();
         candidateI.add(nums.get(0));
         // 模拟单调栈(单调减)
-        List<Integer> candidateJ = new ArrayList<Integer>();
+        List<Integer> candidateJ = new ArrayList<>();
         candidateJ.add(nums.get(0));
 
         int num;
@@ -312,8 +358,9 @@ public class NC384 {
             int idxI = binarySearchFirst(candidateI, num);
             // j位置
             int idxJ = binarySearchLast(candidateJ, num);
+            // nums[i]<nums[k] && nums[k]<nums[j]
             if(idxI>=0 && idxJ>=0){
-                // 保证 nums[i]在前 nums[j]在后
+                // 保证i<j (nums[i]在前 nums[j]在后)
                 if(idxI <= idxJ){
                     return true;
                 }
@@ -338,8 +385,8 @@ public class NC384 {
     }
 
     /**
-     * 二分查找最前一个小于target(nums[k])的索引(i位置)
-     * @param candidate
+     * 二分查找最前一个小于target(nums[k])的索引(i位置) -> nums[i]<nums[k] (i索引 尽量往左尽量小)
+     * @param candidate 单调减
      * @param target
      * @return
      */
@@ -365,8 +412,8 @@ public class NC384 {
     }
 
     /**
-     * 二分查找最后一个大于target(nums[k])的索引(j位置)
-     * @param candidate
+     * 二分查找最后一个大于target(nums[k])的索引(j位置) -> nums[k]<nums[j] (j索引 尽量往右尽量大)
+     * @param candidate 单调减
      * @param target
      * @return
      */
@@ -389,44 +436,5 @@ public class NC384 {
         }
 
         return result;
-    }
-
-    /**
-     * 枚举k: 单调栈(单调增)[双端队列实现]
-     *
-     * i<j<k
-     * ... i ... j ... k ...
-     * ... 1 ... 3 ... 2 ...
-     *
-     * nums[i]<nums[k] && nums[k]<nums[j]
-     * => nums[i]<nums[k]<nums[j]
-     *
-     * @param nums
-     * @return
-     */
-    private boolean solution6(ArrayList<Integer> nums){
-        int n = nums.size();
-        if (n < 3) {
-            return false;
-        }
-
-        // 双端队列
-        Deque<Integer> stack = new ArrayDeque<>();
-
-        // to test case: [1,2,3,0,2]
-        // 枚举k
-        for(int num: nums){
-            // 单调栈 单调增 nums[k]<nums[j]
-            while(!stack.isEmpty() && stack.peekLast()>num){
-                // nums[i]<nums[k]
-                if(stack.peekFirst() < num){
-                    return true;
-                }
-                stack.pollLast();
-            }
-            stack.offerLast(num);
-        }
-
-        return false;
     }
 }
