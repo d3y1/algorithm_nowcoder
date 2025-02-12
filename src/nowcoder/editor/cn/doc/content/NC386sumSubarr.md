@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的数组 nums ，算出他所有的 min(sub) 之和，其中 sub 指数组 nums 的所有连续子数组 ， min(sub) 指子数组的最小值。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，数组中的值满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20nums_i%20%5Cle%2010%5E4%20%5C"> ，由于结果可能非常大，所以返回结果对 <img src="https://www.nowcoder.com/equation?tex=10%5E9%2B7%5C"> 取模的结果 </div><div><br></div><div><div>Related Topics</div><div><li>动态规划</li><li>栈</li><li>单调栈</li></div></div><br>示例:<br>输入:[3,1,2,4,5]<br>输出:30
+<br>
