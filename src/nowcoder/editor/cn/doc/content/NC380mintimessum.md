@@ -1,0 +1,2 @@
+<div>  给定一个长度为 n 的正整数数组请你选出一个区间，使得该区间是所有区间中经过下述计算方法得到的值。 </div> <div>  <br> </div> <div>  计算方法：区间最小值<img src="https://www.nowcoder.com/equation?tex=%5Ctimes%20%5C">区间和<br> </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C"> ，区间中所有元素都满足 <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20val%20%5Cle%20100%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>栈</li><li>单调栈</li></div></div><br>示例:<br>输入:[1,2,3,4,5]<br>输出:36
+<br>
