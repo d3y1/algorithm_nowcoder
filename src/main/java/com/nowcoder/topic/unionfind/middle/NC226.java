@@ -27,8 +27,8 @@ public class NC226 {
         // return solution11(board);
         // return solution2(board);
         // return solution22(board);
-        return solution3(board);
-        // return solution4(board);
+        // return solution3(board);
+        return solution4(board);
     }
 
     /**
@@ -476,6 +476,8 @@ public class NC226 {
         // 找到x的根节点
         int find(int x){
             while(parent[x] != x){
+                // 显著提高效率(减少搜索深度 更快找到根节点)
+                parent[x] = parent[parent[x]];
                 x = parent[x];
             }
             return x;
