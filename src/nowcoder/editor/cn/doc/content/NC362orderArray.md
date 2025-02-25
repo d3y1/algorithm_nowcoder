@@ -1,0 +1,2 @@
+<span>  <div>  给定一个正整数，按字典序返回 [1,n] 内的正整数。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20n%20%5Cle%2010%5E5%20%5C">  </div> </span><div><br></div><div><div>Related Topics</div><div><li>字典树</li><li>dfs</li></div></div><br>示例:<br>输入:5<br>输出:[1,2,3,4,5]
+<br>
