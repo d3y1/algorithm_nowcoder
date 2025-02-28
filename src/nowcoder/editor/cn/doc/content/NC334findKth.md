@@ -1,0 +1,2 @@
+<div>  给定正整数 n 和 k ，请你找出 [1,n] 内的字典序第 k 小的数。 </div> <div>  <br> </div> <div>  数据范围： <img src="https://www.nowcoder.com/equation?tex=1%20%5Cle%20k%20%5Cle%20n%20%5Cle%2010%5E9%20%5C">  </div><div><br></div><div><div>Related Topics</div><div><li>字典树</li></div></div><br>示例:<br>输入:5,5<br>输出:5
+<br>
